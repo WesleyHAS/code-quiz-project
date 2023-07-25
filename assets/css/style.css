@@ -1,0 +1,57 @@
+html {
+  display: flex;
+}
+
+.hidden {
+  display: none;
+}
+
+.view-highscores {
+  color: blue;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: bold;
+  position: absolute;
+  left: 7%;
+  top: 7%;
+}
+
+.position-timer {
+  position: absolute;
+  right: 7%;
+  top: 7%;
+  color: blue;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.description-quiz {
+  font-size: 25px;
+  margin: 0 200px;
+}
+
+h1 {
+  font-size: 50px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 40px;
+}
+
+.start-container {
+  text-align: center;
+  margin: 150px;
+}
+
+#start-quiz {
+  position: absolute;
+  left: 50%;
+  padding: 10px 20px;
+  font-size: 30px;
+  margin-left: -100px;
+  margin-top: 300px;
+  background-color: blue;
+  color: white;
+  border-color: white;
+  border-radius: 20px;
+}
