@@ -10,13 +10,15 @@
   <body>
     <header>
     </header>
-    <p class="position-timer" id="timer">Time: 60</p>
+    <div class="hidden" id="show-timer">
+      <p class="position-timer" id="timer">Time: 60</p>
+    </div>
     <div id="start-game-screen">
       <button id="view-highscores" class="view-highscores-button">View High Scores</a>
       <button id="start-quiz">Start Quiz</button>
       <div class="start-container">
         <h1>Coding Quiz Challenge</h1>
-        <p class="description-quiz">Try to answer the following code related questions whitin the time limit. Keep in mind that incorrect answers will penalize your score/time by 10 seconds.</p>
+        <p class="description-quiz">You have <strong style="font-weight: bold">60 seconds</strong> to answer the following code related questions. Keep in mind that incorrect answers will penalize your score/time by 10 seconds.</p>
       </div>
     </div>
     <div class="hidden" id="view-highscores-screen">
@@ -68,6 +70,13 @@
           <button id="choices" class="alternatives">3. 'remove'</button>
           <button id="choices" class="alternatives">4. 'iterate'</button>
       </div>
+    </div>
+    <div class="hidden" id="submit-screen">
+      <h2>All done!</h2>
+      <p>Your final score is</p>
+      <label for="name"><strong>Enter initials:</strong></label>
+      <input type="text" id="name" class="input" required placeholder="Your Name">
+      <button id="submit-button">Submit</button>
     </div>
     <footer>
     </footer>

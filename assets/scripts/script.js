@@ -7,6 +7,8 @@ var screen3 = document.getElementById('quiz-screen-3');
 var screen4 = document.getElementById('quiz-screen-4');
 var screen5 = document.getElementById('quiz-screen-5');
 var viewHighScores = document.getElementById('view-highscores-screen');
+var showTimer = document.getElementById('show-timer');
+var submitScreen = document.getElementById('submit-screen');
 
 function startHighScores() {
   startGameScreen.classList.add('hidden');
@@ -15,6 +17,14 @@ function startHighScores() {
 
 var viewHighScoresButton = document.getElementById('view-highscores');
 viewHighScoresButton.addEventListener('click', startHighScores);
+
+function finishGame() {
+  screen5.classList.add('hidden');
+  viewHighScores.classList.remove('hidden');
+}
+
+var submitButton = document.getElementById('submit-button');
+submitButton.addEventListener('click', finishGame);
 
 //Function to start game and timer
 function startGame() {
@@ -30,6 +40,7 @@ function startGame() {
 
  startGameScreen.classList.add('hidden');
  screen1.classList.remove('hidden');
+ showTimer.classList.remove('hidden');
 }
 
 //Event listener to start game when click
@@ -40,13 +51,13 @@ startQuizButton.addEventListener('click', startGame);
 var startNextQuestion = document.querySelectorAll('.questions-container .alternatives');
 
 for (var i = 0; i < startNextQuestion.length; i++) {
-  startNextQuestion[i].addEventListener('click', nextQuestion);
+  startNextQuestion[i].addEventListener('click', nextScreen);
 }
 
 /* Reference for classList https://developer.mozilla.org/en-US/docs/Web/API/Element/classList */
 
 //Function to swap screens
-function nextQuestion() {
+function nextScreen() {
   if (!screen1.classList.contains('hidden')) {
     // Move from screen1 to screen2
     screen1.classList.add('hidden');
@@ -63,6 +74,10 @@ function nextQuestion() {
     //Move from screen4 to screen5
     screen4.classList.add('hidden');
     screen5.classList.remove('hidden');
+  } else if (!screen5.classList.contains('hidden')) {
+    //Move from screen5 to submit screen
+    screen5.classList.add('hidden');
+    submitScreen.classList.remove('hidden');
   }
   
 }
