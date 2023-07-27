@@ -6,14 +6,16 @@ html {
   display: none;
 }
 
-.view-highscores {
+.view-highscores-button {
   color: blue;
-  text-decoration: none;
   font-size: 25px;
   font-weight: bold;
   position: absolute;
   left: 7%;
   top: 7%;
+  border: none;
+  background-color: white;
+  cursor: pointer;
 }
 
 .position-timer {

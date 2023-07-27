@@ -6,6 +6,15 @@ var screen2 = document.getElementById('quiz-screen-2');
 var screen3 = document.getElementById('quiz-screen-3');
 var screen4 = document.getElementById('quiz-screen-4');
 var screen5 = document.getElementById('quiz-screen-5');
+var viewHighScores = document.getElementById('view-highscores-screen');
+
+function startHighScores() {
+  startGameScreen.classList.add('hidden');
+  viewHighScores.classList.remove('hidden');
+}
+
+var viewHighScoresButton = document.getElementById('view-highscores');
+viewHighScoresButton.addEventListener('click', startHighScores);
 
 //Function to start game and timer
 function startGame() {

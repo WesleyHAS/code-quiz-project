@@ -10,14 +10,19 @@
   <body>
     <header>
     </header>
-    <a class="view-highscores" href="">View High Scores</a>
     <p class="position-timer" id="timer">Time: 60</p>
     <div id="start-game-screen">
+      <button id="view-highscores" class="view-highscores-button">View High Scores</a>
       <button id="start-quiz">Start Quiz</button>
       <div class="start-container">
         <h1>Coding Quiz Challenge</h1>
         <p class="description-quiz">Try to answer the following code related questions whitin the time limit. Keep in mind that incorrect answers will penalize your score/time by 10 seconds.</p>
       </div>
+    </div>
+    <div class="hidden" id="view-highscores-screen">
+      <h2>High Scores</h2>
+      <button class="go-back">Go back</button>
+      <button class="clear-high-scores">Clear high scores</button>
     </div>
     <div class="hidden" id="quiz-screen-1">
       <div class="questions-container">
