@@ -9,6 +9,11 @@ var screen5 = document.getElementById('quiz-screen-5');
 var viewHighScores = document.getElementById('view-highscores-screen');
 var showTimer = document.getElementById('show-timer');
 var submitScreen = document.getElementById('submit-screen');
+var timerInterval;
+
+function stopTimer() {
+  clearInterval(timerInterval);
+}
 
 function startHighScores() {
   startGameScreen.classList.add('hidden');
@@ -21,14 +26,23 @@ viewHighScoresButton.addEventListener('click', startHighScores);
 function finishGame() {
   screen5.classList.add('hidden');
   viewHighScores.classList.remove('hidden');
+  submitScreen.classList.add('hidden');
 }
 
 var submitButton = document.getElementById('submit-button');
 submitButton.addEventListener('click', finishGame);
 
+function goBack() {
+  viewHighScores.classList.add('hidden');
+  startGameScreen.classList.remove('hidden');
+}
+
+var goBackButton = document.getElementById('go-back');
+goBackButton.addEventListener('click', goBack);
+
 //Function to start game and timer
 function startGame() {
- var timerInterval = setInterval(function() {
+  timerInterval = setInterval(function() {
   secondsLeft--;
 
   if(secondsLeft === 0) {
@@ -78,6 +92,8 @@ function nextScreen() {
     //Move from screen5 to submit screen
     screen5.classList.add('hidden');
     submitScreen.classList.remove('hidden');
+    showTimer.classList.add('hidden');
+    stopTimer();
   }
   
 }
