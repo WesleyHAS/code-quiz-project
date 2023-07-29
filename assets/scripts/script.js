@@ -15,6 +15,14 @@ var timer = document.getElementById('timer');
 var displayHighScoreSpan = document.getElementById('display-highscores');
 var submitButton = document.getElementById('submit-button');
 var msgDiv = document.getElementById('msg');
+var clearScores = document.getElementById('clear-high-scores');
+
+function clearHighScores () {
+  localStorage.clear();
+  displayHighScoreSpan.textContent = '';
+}
+
+clearScores.addEventListener('click', clearHighScores);
 
 function displayMessage(type, message) {
   msgDiv.textContent = message;
@@ -28,9 +36,10 @@ function renderFinalTimer () {
 }
 
 function renderHighScores () {
-  var finalScore = localStorage.getItem('finalTimer');
-  var scoreInitials = localStorage.getItem('storedInitials');
-  var scoreText = scoreInitials + '-' + finalScore;
+  var scoreText = '';
+  if (localStorage.getItem('storedInitials') && localStorage.getItem('finalTimer')) {
+    scoreText = localStorage.getItem('storedInitials') + '-' + localStorage.getItem('finalTimer');
+  }
 
   displayHighScoreSpan.textContent = scoreText;
 }
@@ -48,6 +57,16 @@ function startHighScores() {
 
 var viewHighScoresButton = document.getElementById('view-highscores');
 viewHighScoresButton.addEventListener('click', startHighScores);
+
+// viewHighScoresButton.addEventListener('click', function() {
+
+//   startHighScores();
+
+  // if (displayHighScoreSpan === '') {
+  //   displayHighScoreSpan.textContent = '';
+  // }
+// });
+
 
 function finishGame() {
   screen5.classList.add('hidden');
@@ -73,8 +92,6 @@ submitButton.addEventListener('click', function(event){
   }
 
 });
-
-
 
 function goBack() {
   viewHighScores.classList.add('hidden');
