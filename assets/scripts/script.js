@@ -10,6 +10,8 @@ var viewHighScores = document.getElementById('view-highscores-screen');
 var showTimer = document.getElementById('show-timer');
 var submitScreen = document.getElementById('submit-screen');
 var timerInterval;
+var finalScoreSpan = document.getElementById('final-score');
+var timer = document.getElementById('timer');
 
 function stopTimer() {
   clearInterval(timerInterval);
@@ -48,7 +50,7 @@ function startGame() {
   if(secondsLeft === 0) {
     clearInterval(timerInterval);
   }
-  var timer = document.getElementById('timer');
+
   timer.textContent = 'Time: ' + secondsLeft;
  }, 1000);
 
@@ -92,8 +94,29 @@ function nextScreen() {
     //Move from screen5 to submit screen
     screen5.classList.add('hidden');
     submitScreen.classList.remove('hidden');
-    showTimer.classList.add('hidden');
+    // showTimer.classList.add('hidden');
     stopTimer();
+    
+    var finalScore = secondsLeft;
+    localStorage.setItem('finalTimer', finalScore);
+    renderHighScore();
   }
   
 }
+
+function renderHighScore () {
+  var finalScore = localStorage.getItem('finalTimer');
+
+  finalScoreSpan.textContent = finalScore;
+}
+
+
+// submitButton.addEventListener('click', function(event) {
+//   event.preventDefault();
+
+//   var finalScore = secondsLeft;
+//   localStorage.setItem('finalTimer', finalScore);
+//   renderHighScore();
+
+
+// }); 
