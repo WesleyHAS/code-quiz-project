@@ -12,6 +12,28 @@ var submitScreen = document.getElementById('submit-screen');
 var timerInterval;
 var finalScoreSpan = document.getElementById('final-score');
 var timer = document.getElementById('timer');
+var displayHighScoreSpan = document.getElementById('display-highscores');
+var submitButton = document.getElementById('submit-button');
+var msgDiv = document.getElementById('msg');
+
+function displayMessage(type, message) {
+  msgDiv.textContent = message;
+  msgDiv.setAttribute("class", type);
+}
+
+function renderFinalTimer () {
+  var finalScore = localStorage.getItem('finalTimer');
+  
+  finalScoreSpan.textContent = finalScore;
+}
+
+function renderHighScores () {
+  var finalScore = localStorage.getItem('finalTimer');
+  var scoreInitials = localStorage.getItem('storedInitials');
+  var scoreText = scoreInitials + '-' + finalScore;
+
+  displayHighScoreSpan.textContent = scoreText;
+}
 
 function stopTimer() {
   clearInterval(timerInterval);
@@ -20,6 +42,8 @@ function stopTimer() {
 function startHighScores() {
   startGameScreen.classList.add('hidden');
   viewHighScores.classList.remove('hidden');
+
+  renderHighScores();
 }
 
 var viewHighScoresButton = document.getElementById('view-highscores');
@@ -31,12 +55,31 @@ function finishGame() {
   submitScreen.classList.add('hidden');
 }
 
-var submitButton = document.getElementById('submit-button');
-submitButton.addEventListener('click', finishGame);
+submitButton.addEventListener('click', function(event){
+
+  var name = document.getElementById('name').value;
+  var finalScore = secondsLeft;
+
+  if (name === '') {
+    displayMessage('error', 'Please input your initials');
+  } else {
+    displayMessage('success', 'Score registered successfully');
+
+    localStorage.setItem('finalTimer', finalScore);
+    localStorage.setItem('storedInitials', name);
+
+    renderHighScores();  
+    finishGame();
+  }
+
+});
+
+
 
 function goBack() {
   viewHighScores.classList.add('hidden');
   startGameScreen.classList.remove('hidden');
+  location.reload();
 }
 
 var goBackButton = document.getElementById('go-back');
@@ -99,24 +142,26 @@ function nextScreen() {
     
     var finalScore = secondsLeft;
     localStorage.setItem('finalTimer', finalScore);
-    renderHighScore();
+    renderFinalTimer();
   }
   
 }
 
-function renderHighScore () {
-  var finalScore = localStorage.getItem('finalTimer');
-
-  finalScoreSpan.textContent = finalScore;
-}
-
-
 // submitButton.addEventListener('click', function(event) {
 //   event.preventDefault();
 
+//   var name = document.getElementById('name').value;
 //   var finalScore = secondsLeft;
-//   localStorage.setItem('finalTimer', finalScore);
-//   renderHighScore();
 
+//   if (name === '') {
+//     displayMessage('error', 'Please input your initials');
+//   } else {
+//     displayMessage('success', 'Score registered successfully');
+
+//     localStorage.setItem('finalTimer', finalScore);
+//     localStorage.setItem('storedInitials', name);
+  
+//     renderHighScores();  
+//   }
 
 // }); 

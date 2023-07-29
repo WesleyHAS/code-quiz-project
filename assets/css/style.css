@@ -75,3 +75,8 @@ h1 {
   border-color: white;
   border-radius: 20px;
 }
+
+.highscores-styling {
+  background-color: blue;
+  color: white;
+}
