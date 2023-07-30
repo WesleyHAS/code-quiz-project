@@ -16,10 +16,17 @@ var displayHighScoreSpan = document.getElementById('display-highscores');
 var submitButton = document.getElementById('submit-button');
 var msgDiv = document.getElementById('msg');
 var clearScores = document.getElementById('clear-high-scores');
+var highScoresArray = [];
+
+if (localStorage.getItem('highScoreArray')) {
+  console.log(localStorage.getItem('highScoreArray'));
+  highScoresArray = JSON.parse(localStorage.getItem('highScoreArray'));
+}
 
 function clearHighScores () {
   localStorage.clear();
   displayHighScoreSpan.textContent = '';
+  highScoresArray = [];
 }
 
 clearScores.addEventListener('click', clearHighScores);
@@ -37,11 +44,22 @@ function renderFinalTimer () {
 
 function renderHighScores () {
   var scoreText = '';
-  if (localStorage.getItem('storedInitials') && localStorage.getItem('finalTimer')) {
-    scoreText = localStorage.getItem('storedInitials') + '-' + localStorage.getItem('finalTimer');
+
+  displayHighScoreSpan.textContent = '';
+  var listScores = document.createElement("ul");
+
+  highScoresArray.sort(function (a, b) {
+    return b.scoreTime - a.scoreTime;
+  });
+
+  for (var i = 0; i < highScoresArray.length; i++) {
+    var li = document.createElement('li');
+    li.textContent = highScoresArray[i].scoreName + '-' + highScoresArray[i].scoreTime;
+    listScores.appendChild(li);
   }
 
-  displayHighScoreSpan.textContent = scoreText;
+  console.log(highScoresArray);
+  displayHighScoreSpan.appendChild(listScores);
 }
 
 function stopTimer() {
@@ -58,16 +76,6 @@ function startHighScores() {
 var viewHighScoresButton = document.getElementById('view-highscores');
 viewHighScoresButton.addEventListener('click', startHighScores);
 
-// viewHighScoresButton.addEventListener('click', function() {
-
-//   startHighScores();
-
-  // if (displayHighScoreSpan === '') {
-  //   displayHighScoreSpan.textContent = '';
-  // }
-// });
-
-
 function finishGame() {
   screen5.classList.add('hidden');
   viewHighScores.classList.remove('hidden');
@@ -82,10 +90,21 @@ submitButton.addEventListener('click', function(event){
   if (name === '') {
     displayMessage('error', 'Please input your initials');
   } else {
-    displayMessage('success', 'Score registered successfully');
 
     localStorage.setItem('finalTimer', finalScore);
     localStorage.setItem('storedInitials', name);
+
+    if (localStorage.getItem('storedInitials') && localStorage.getItem('finalTimer')) {
+
+      var personalScore = {
+        scoreName: localStorage.getItem('storedInitials'),
+        scoreTime: localStorage.getItem('finalTimer')
+      }
+  
+      highScoresArray.push(personalScore);
+    }
+
+    localStorage.setItem('highScoreArray', JSON.stringify(highScoresArray));
 
     renderHighScores();  
     finishGame();
@@ -96,7 +115,9 @@ submitButton.addEventListener('click', function(event){
 function goBack() {
   viewHighScores.classList.add('hidden');
   startGameScreen.classList.remove('hidden');
-  location.reload();
+  document.getElementById('name').value = null;
+  secondsLeft = 60;
+  showTimer.classList.add('hidden');
 }
 
 var goBackButton = document.getElementById('go-back');
@@ -163,22 +184,3 @@ function nextScreen() {
   }
   
 }
-
-// submitButton.addEventListener('click', function(event) {
-//   event.preventDefault();
-
-//   var name = document.getElementById('name').value;
-//   var finalScore = secondsLeft;
-
-//   if (name === '') {
-//     displayMessage('error', 'Please input your initials');
-//   } else {
-//     displayMessage('success', 'Score registered successfully');
-
-//     localStorage.setItem('finalTimer', finalScore);
-//     localStorage.setItem('storedInitials', name);
-  
-//     renderHighScores();  
-//   }
-
-// }); 
