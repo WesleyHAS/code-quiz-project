@@ -185,7 +185,6 @@ function renderHighScores () {
     listScores.appendChild(li);
   }
 
-  console.log(highScoresArray);
   displayHighScoreSpan.appendChild(listScores);
 }
 
