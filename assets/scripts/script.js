@@ -107,6 +107,8 @@ submitButton.addEventListener('click', function(event){
     renderHighScores();  
     finishGame();
   }
+
+  displayAnswer.classList.add('hidden');
 });
 
 function goBack() {
