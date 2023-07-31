@@ -8,8 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-    <header>
-    </header>
+    <!-- Start Screen -->
     <div class="hidden" id="show-timer">
       <p class="position-timer" id="timer">Time: 60</p>
     </div>
@@ -23,12 +22,14 @@
         <button id="start-quiz">Start Quiz</button>
       </div>
     </div>
+    <!-- High Scores Screen -->
     <div class="hidden" id="view-highscores-screen">
       <h2>High Scores</h2>
       <span class="highscores-styling" id="display-highscores"></span>
       <button id="go-back">Go back</button>
       <button id="clear-high-scores">Clear high scores</button>
     </div>
+    <!-- Questions Screens -->
     <div class="hidden" id="quiz-screen-1">
       <div class="questions-container">
         <h2>Which of the following array methods in JavaScript is used to add one or more elements to the end of an array?</h2>
@@ -84,6 +85,7 @@
     </div>
     <div class="hidden" id="display-answer">      
     </div>
+    <!-- Submit Screen -->
     <div class="hidden" id="submit-screen">
       <h2>All done!</h2>
       <p>Your final score is: <span id="final-score"></span></p>

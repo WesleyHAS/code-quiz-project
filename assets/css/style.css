@@ -15,6 +15,7 @@ body {
   display: none;
 }
 
+/* High scores button styling */
 .view-highscores-button {
   color: blue;
   font-size: 25px;
@@ -58,6 +59,7 @@ h1 {
   justify-content: center;
 }
 
+/* Start button styling */
 #start-quiz {
   padding: 10px 20px;
   font-size: 30px;
@@ -90,6 +92,7 @@ h1 {
   background-color: blue;
 }
 
+/* High score list styling */
 ul {
   margin: 50px;
 }
@@ -102,6 +105,7 @@ li {
   margin: 5px;
 }
 
+/* Styling for the displayed answer on bottom of screen */
 #display-answer {
   position: fixed;
   bottom: 0;
@@ -136,6 +140,7 @@ li {
   font-weight: bold;
 }
 
+/* Input styling */
 #submit-screen input, #view-highscores-screen input {
   display: block;
   margin: 20px auto;
@@ -148,6 +153,7 @@ li {
   cursor: pointer;
 }
 
+/* Buttons styling */
 #submit-button, #go-back, #clear-high-scores {
   display: block;
   margin: 20px auto;
@@ -160,6 +166,7 @@ li {
   cursor: pointer;
 }
 
+/* Adds responsiveness to the page */
 @media screen and (max-width: 768px) {
   .description-quiz, .questions-container {
     margin: 0 20px;
