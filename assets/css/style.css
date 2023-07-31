@@ -1,5 +1,14 @@
-html {
+html, body {
+  height: 100%;
+}
+
+body {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
 }
 
 .hidden {
@@ -29,53 +38,109 @@ html {
 
 .description-quiz {
   font-size: 25px;
-  margin: 0 200px;
+  text-align: center;
 }
 
 h1 {
   font-size: 50px;
   font-weight: bold;
-  display: flex;
-  justify-content: center;
   padding-bottom: 40px;
+  text-align: center;
 }
 
 .start-container {
   text-align: center;
-  margin: 150px;
 }
 
 #start-quiz {
-  position: absolute;
-  left: 50%;
   padding: 10px 20px;
   font-size: 30px;
-  margin-left: -100px;
-  margin-top: 300px;
   background-color: blue;
   color: white;
-  border-color: white;
+  border: none;
   border-radius: 20px;
+  cursor: pointer;
 }
 
 .questions-container {
   text-align: center;
-  margin: 120px 600px;
   font-size: 30px;
   font-weight: bold;
 }
 
 .alternatives {
   display: block;
-  margin: 20px;
+  margin: 20px auto;
   padding: 10px 20px;
   font-size: 20px;
   background-color: blue;
   color: white;
-  border-color: white;
+  border: none;
   border-radius: 20px;
+  cursor: pointer;
 }
 
 .highscores-styling {
   background-color: blue;
+}
+
+#display-answer {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top: 1px solid #000;
+  background-color: #f9f9f9;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+#submit-screen, #view-highscores-screen {
+  text-align: center;
+}
+
+#submit-screen h2, #view-highscores-screen h2 {
+  font-size: 50px;
+  font-weight: bold;
+  padding-bottom: 40px;
+}
+
+#submit-screen p, #view-highscores-screen p {
+  font-size: 25px;
+}
+
+#submit-screen label, #view-highscores-screen label {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#submit-screen input, #view-highscores-screen input {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 20px;
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+#submit-button, #go-back, #clear-high-scores {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 20px;
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* Additional responsive adjustments */
+@media screen and (max-width: 768px) {
+  .description-quiz, .questions-container {
+    margin: 0 20px;
+  }
 }

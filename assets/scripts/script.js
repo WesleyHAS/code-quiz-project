@@ -17,6 +17,9 @@ var submitButton = document.getElementById('submit-button');
 var msgDiv = document.getElementById('msg');
 var clearScores = document.getElementById('clear-high-scores');
 var highScoresArray = [];
+var displayAnswer = document.getElementById('display-answer');
+var screenAsnwer = document.createElement('p');
+displayAnswer.appendChild(screenAsnwer);
 
 if (localStorage.getItem('highScoreArray')) {
   highScoresArray = JSON.parse(localStorage.getItem('highScoreArray'));
@@ -156,10 +159,12 @@ function nextScreen() {
     // Move from screen1 to screen2
     screen1.classList.add('hidden');
     screen2.classList.remove('hidden');
+    displayAnswer.classList.remove('hidden');
   } else if (!screen2.classList.contains('hidden')) {
     // Move from screen2 to screen3
     screen2.classList.add('hidden');
     screen3.classList.remove('hidden');
+    displayAnswer.classList.remove('hidden');
   } else if (!screen3.classList.contains('hidden')) {
     //Move from screen3 to screen4
     screen3.classList.add('hidden');
@@ -172,7 +177,6 @@ function nextScreen() {
     //Move from screen5 to submit screen
     screen5.classList.add('hidden');
     submitScreen.classList.remove('hidden');
-    // showTimer.classList.add('hidden');
     stopTimer();
   }
 }
@@ -183,7 +187,11 @@ function checkAnswer(event) {
   var isCorrect = event.target.getAttribute('data-correct') === 'true';
 
   if (isCorrect) {
+    screenAsnwer.textContent = 'Correct!';
+
   } else {
+    screenAsnwer.textContent = 'Wrong!';
+
     secondsLeft -= 10;
 
     if(secondsLeft <= 0) {
