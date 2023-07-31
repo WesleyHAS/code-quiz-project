@@ -43,6 +43,7 @@ function startGame() {
   if(secondsLeft <= 0) {
     secondsLeft = 0;
     clearInterval(timerInterval);
+    finishGame();
   }
 
   timer.textContent = 'Time: ' + secondsLeft;
@@ -109,6 +110,7 @@ function checkAnswer(event) {
     if(secondsLeft <= 0) {
       secondsLeft = 0;
       clearInterval(timerInterval);
+      finishGame();
     }
     // Update the timer display
     timer.textContent = 'Time: ' + secondsLeft;
@@ -188,9 +190,14 @@ function renderHighScores () {
 }
 
 function finishGame() {
+  screen1.classList.add('hidden');
+  screen2.classList.add('hidden');
+  screen3.classList.add('hidden');
+  screen4.classList.add('hidden');
   screen5.classList.add('hidden');
   viewHighScores.classList.remove('hidden');
   submitScreen.classList.add('hidden');
+  displayAnswer.classList.add('hidden');
 }
 
 function startHighScores() {
