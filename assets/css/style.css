@@ -39,6 +39,7 @@ body {
 .description-quiz {
   font-size: 25px;
   text-align: center;
+  margin-bottom: 20px; /* Add some bottom margin for separation */
 }
 
 h1 {
@@ -50,6 +51,11 @@ h1 {
 
 .start-container {
   text-align: center;
+}
+
+.start-quiz-container {
+  display: flex;
+  justify-content: center;
 }
 
 #start-quiz {
