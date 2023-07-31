@@ -19,7 +19,7 @@ var clearScores = document.getElementById('clear-high-scores');
 var highScoresArray = [];
 
 if (localStorage.getItem('highScoreArray')) {
-  console.log(localStorage.getItem('highScoreArray'));
+  // console.log(localStorage.getItem('highScoreArray'));
   highScoresArray = JSON.parse(localStorage.getItem('highScoreArray'));
 }
 
@@ -48,6 +48,8 @@ function renderHighScores () {
   displayHighScoreSpan.textContent = '';
   var listScores = document.createElement("ul");
 
+
+  /* Reference for sorting array desc https://www.w3schools.com/jsref/jsref_sort.asp */
   highScoresArray.sort(function (a, b) {
     return b.scoreTime - a.scoreTime;
   });
@@ -116,8 +118,9 @@ function goBack() {
   viewHighScores.classList.add('hidden');
   startGameScreen.classList.remove('hidden');
   document.getElementById('name').value = null;
-  secondsLeft = 60;
   showTimer.classList.add('hidden');
+  secondsLeft = 60;
+  location.reload();
 }
 
 var goBackButton = document.getElementById('go-back');
