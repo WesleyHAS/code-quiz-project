@@ -19,7 +19,6 @@ var clearScores = document.getElementById('clear-high-scores');
 var highScoresArray = [];
 
 if (localStorage.getItem('highScoreArray')) {
-  // console.log(localStorage.getItem('highScoreArray'));
   highScoresArray = JSON.parse(localStorage.getItem('highScoreArray'));
 }
 
@@ -34,12 +33,6 @@ clearScores.addEventListener('click', clearHighScores);
 function displayMessage(type, message) {
   msgDiv.textContent = message;
   msgDiv.setAttribute("class", type);
-}
-
-function renderFinalTimer () {
-  var finalScore = localStorage.getItem('finalTimer');
-  
-  finalScoreSpan.textContent = finalScore;
 }
 
 function renderHighScores () {
@@ -111,7 +104,6 @@ submitButton.addEventListener('click', function(event){
     renderHighScores();  
     finishGame();
   }
-
 });
 
 function goBack() {
@@ -131,7 +123,8 @@ function startGame() {
   timerInterval = setInterval(function() {
   secondsLeft--;
 
-  if(secondsLeft === 0) {
+  if(secondsLeft <= 0) {
+    secondsLeft = 0;
     clearInterval(timerInterval);
   }
 
@@ -151,13 +144,14 @@ startQuizButton.addEventListener('click', startGame);
 var startNextQuestion = document.querySelectorAll('.questions-container .alternatives');
 
 for (var i = 0; i < startNextQuestion.length; i++) {
-  startNextQuestion[i].addEventListener('click', nextScreen);
+  startNextQuestion[i].addEventListener('click', nextScreenAndCheckAnswer);
 }
 
 /* Reference for classList https://developer.mozilla.org/en-US/docs/Web/API/Element/classList */
 
 //Function to swap screens
 function nextScreen() {
+
   if (!screen1.classList.contains('hidden')) {
     // Move from screen1 to screen2
     screen1.classList.add('hidden');
@@ -180,10 +174,30 @@ function nextScreen() {
     submitScreen.classList.remove('hidden');
     // showTimer.classList.add('hidden');
     stopTimer();
-    
-    var finalScore = secondsLeft;
-    localStorage.setItem('finalTimer', finalScore);
-    renderFinalTimer();
   }
-  
+}
+
+function checkAnswer(event) {
+  // Get the selected answer from the clicked button
+  var selectedAnswer = event.target.textContent;
+  var isCorrect = event.target.getAttribute('data-correct') === 'true';
+
+  if (isCorrect) {
+  } else {
+    secondsLeft -= 10;
+
+    if(secondsLeft <= 0) {
+      secondsLeft = 0;
+      clearInterval(timerInterval);
+    }
+    // Update the timer display
+    timer.textContent = 'Time: ' + secondsLeft;
+  }
+  //display final time on the final-score span tag
+  finalScoreSpan.textContent = secondsLeft;
+}
+
+function nextScreenAndCheckAnswer(event) {
+  nextScreen(event);
+  checkAnswer(event);
 }
